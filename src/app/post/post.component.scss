@@ -1,0 +1,26 @@
+.card-title {
+  position: absolute;
+  top: -15px;
+  background-color: white;
+  padding: 0 10px;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  * {
+    margin-right: 5px;
+  }
+
+  .post-action {
+    display: none;
+  }
+}
+
+
+:host(:hover)::ng-deep .post-action {
+  display: flex !important;
+}
+

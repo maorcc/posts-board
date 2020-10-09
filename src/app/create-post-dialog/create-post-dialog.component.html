@@ -1,0 +1,47 @@
+<button (click)="frame.show()" *ngIf="!post" color="default" data-toggle="modal" mdbBtn mdbWavesEffect type="button">
+  <fa-icon [icon]="faPlus" size="lg"></fa-icon>
+  Add Post
+</button>
+
+<button (click)="frame.show()" *ngIf="post" class="is-edit post-action" data-toggle="modal">
+  <fa-icon [icon]="faEdit" size="lg"></fa-icon>
+</button>
+
+<div #frame="mdbModal" aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade left" id="frameModalTop"
+     mdbModal role="dialog" tabindex="-1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">{{post ? 'Update note' : 'Post a new note'}}</h4>
+        <button (click)="frame.hide()" aria-label="Close" class="close" data-dismiss="modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <label for="defaultForm-author">Author Name</label>
+          <input [formControl]="postAuthor" class="form-control" mdbInput mdbValidate type="text">
+          <mdb-error *ngIf="postAuthor.invalid && (postAuthor.dirty || postAuthor.touched)">
+            Input invalid
+          </mdb-error>
+        </div>
+
+        <div class="md-form mb-4">
+          <label for="defaultForm-content">What would you like to say?</label>
+          <textarea [formControl]="postContent" class="form-control" mdbInput mdbValidate></textarea>
+          <mdb-error *ngIf="postContent.invalid && (postContent.dirty || postContent.touched)">
+            Input invalid
+          </mdb-error>
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-right">
+        <button (click)="frame.hide()" class="waves-light" color="link" mdbBtn mdbWavesEffect>Cancel</button>
+        <button (click)="savePost() && frame.hide()" [disabled]="postAuthor.invalid || postContent.invalid"
+                class="waves-light" color="default" mdbBtn
+                mdbWavesEffect>Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

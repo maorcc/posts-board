@@ -1,0 +1,10 @@
+<div class="card-body">
+  <h5 class="card-title">{{post.author}}</h5>
+  <p class="card-text">{{post.content | truncate: 150 }}</p>
+</div>
+<div class="d-flex flex-row-reverse buttons">
+  <b-create-post-dialog [post]="post"></b-create-post-dialog>
+  <div (click)="deletePost(post)" class="post-action">
+    <fa-icon [icon]="faTrash" size="lg"></fa-icon>
+  </div>
+</div>

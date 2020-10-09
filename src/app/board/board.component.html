@@ -1,0 +1,11 @@
+<div class="container board">
+  <div class="row justify-content-center">
+    <h1 class="">Welcome to post board</h1>
+  </div>
+  <b-create-post-dialog></b-create-post-dialog>
+  <div class="card-columns">
+    <div *ngFor="let post of postsService.posts" class="card">
+      <b-post [post]="post"></b-post>
+    </div>
+  </div>
+</div>
