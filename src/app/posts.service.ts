@@ -42,6 +42,10 @@ export class PostsService {
     return this.posts.find(data => data.id === id);
   }
 
+  getPostsCounter(): number {
+    return this.allPosts.length;
+  }
+
   private saveStorage(): void {
     localStorage.setItem(this.POSTS_STORAGE_KEY, JSON.stringify(this.posts));
   }
