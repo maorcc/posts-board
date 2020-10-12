@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Post} from './common/post';
+import {PostClass} from './common/post.class';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,19 @@ export class PostsService {
     this.loadStorage();
   }
 
-  private _posts: Post[] = [];
+  private _posts: PostClass[] = [];
 
-  get posts(): Post[] {
+  get posts(): PostClass[] {
     return this._posts;
   }
 
-  public createPost(newPost: Post): number {
+  public createPost(newPost: PostClass): number {
     this.posts.push(newPost);
     this.saveStorage();
     return newPost.id;
   }
 
-  public updatePost(post: Post): void {
+  public updatePost(post: PostClass): void {
     if (!this.getPostById(post.id)) {
       throw new Error(`Post '${JSON.stringify(post)}' not found`);
     }
@@ -36,7 +36,7 @@ export class PostsService {
     this.saveStorage();
   }
 
-  getPostById(id: number): Post {
+  getPostById(id: number): PostClass {
     id = Number(id);
     return this.posts.find(data => data.id === id);
   }

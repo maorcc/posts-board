@@ -1,4 +1,7 @@
-export class Post {
+/**
+ * Represents a single Post object
+ */
+export class PostClass {
 
   content: string;
   author: string;

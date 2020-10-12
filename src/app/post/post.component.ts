@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Post} from '../common/post';
+import {PostClass} from '../common/post.class';
 import {PostsService} from '../posts.service';
 import {faTrash} from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +10,7 @@ import {faTrash} from '@fortawesome/free-solid-svg-icons';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post: Post;
+  @Input() post: PostClass;
   faTrash = faTrash;
 
   constructor(private postsService: PostsService) {
@@ -19,7 +19,7 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deletePost(post: Post): void {
+  deletePost(post: PostClass): void {
     this.postsService.deletePost(post.id);
   }
 
