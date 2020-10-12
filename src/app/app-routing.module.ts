@@ -1,10 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {BoardComponent} from './board/board.component';
 
 const routes: Routes = [
-  {path: '**', redirectTo: 'board'},
-  {path: 'board', component: BoardComponent}
+  {
+    path: '**',
+    redirectTo: 'board'
+  },
+  {
+    path: 'board',
+    loadChildren: () => import('./board/board.module').then(m => m.BoardModule),
+  }
 ];
 
 @NgModule({

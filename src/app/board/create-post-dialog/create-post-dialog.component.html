@@ -1,4 +1,4 @@
-<button (click)="frame.show()" *ngIf="!post" color="default" data-toggle="modal" mdbBtn mdbWavesEffect type="button">
+<button (click)="frame.show()" *ngIf="!post" color="primary" data-toggle="modal" mdbBtn mdbWavesEffect type="button">
   <fa-icon [icon]="faPlus" size="lg"></fa-icon>
   Add Post
 </button>
@@ -19,7 +19,7 @@
       </div>
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
-          <label for="defaultForm-author">Author Name</label>
+          <label>Author Name</label>
           <input [formControl]="postAuthor" class="form-control" mdbInput mdbValidate type="text">
           <mdb-error *ngIf="postAuthor.invalid && (postAuthor.dirty || postAuthor.touched)">
             Input invalid
@@ -27,8 +27,8 @@
         </div>
 
         <div class="md-form mb-4">
-          <label for="defaultForm-content">What would you like to say?</label>
-          <textarea [formControl]="postContent" class="form-control" mdbInput mdbValidate></textarea>
+          <label>What would you like to say?</label>
+          <textarea [formControl]="postContent" class="form-control" mdbInput mdbValidate rows="8"></textarea>
           <mdb-error *ngIf="postContent.invalid && (postContent.dirty || postContent.touched)">
             Input invalid
           </mdb-error>

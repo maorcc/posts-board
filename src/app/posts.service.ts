@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {PostClass} from './common/post.class';
+import {PostModel} from './board/post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,43 +12,44 @@ export class PostsService {
     this.loadStorage();
   }
 
-  private _posts: PostClass[] = [];
+  private allPosts: PostModel[] = [];
 
-  get posts(): PostClass[] {
-    return this._posts;
+  get posts(): PostModel[] {
+    return this.allPosts;
   }
 
-  public createPost(newPost: PostClass): number {
+  public createPost(newPost: PostModel): number {
     this.posts.push(newPost);
     this.saveStorage();
     return newPost.id;
   }
 
-  public updatePost(post: PostClass): void {
+  public updatePost(post: PostModel): PostModel {
     if (!this.getPostById(post.id)) {
       throw new Error(`Post '${JSON.stringify(post)}' not found`);
     }
     this.saveStorage();
+    return post;
   }
 
   deletePost(postId: number): void {
-    this._posts = this.posts.filter(post => post.id !== postId);
+    this.allPosts = this.posts.filter(post => post.id !== postId);
     this.saveStorage();
   }
 
-  getPostById(id: number): PostClass {
+  getPostById(id: number): PostModel {
     id = Number(id);
     return this.posts.find(data => data.id === id);
   }
 
-  saveStorage(): void {
+  private saveStorage(): void {
     localStorage.setItem(this.POSTS_STORAGE_KEY, JSON.stringify(this.posts));
   }
 
-  loadStorage(): void {
+  private loadStorage(): void {
     const data = localStorage.getItem(this.POSTS_STORAGE_KEY);
     if (data) {
-      this._posts = JSON.parse(data);
+      this.allPosts = JSON.parse(data);
     }
   }
 

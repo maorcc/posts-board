@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {PostsService} from '../posts.service';
+import {Component, OnInit} from '@angular/core';
+import {PostsService} from '../../posts.service';
+import {PostModel} from '../post.model';
 
 @Component({
   selector: 'b-board',
@@ -14,4 +15,7 @@ export class BoardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  idTrackFn(_: number, post: PostModel): number {
+    return post.id;
+  }
 }

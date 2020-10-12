@@ -1,8 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {PostsService} from '../posts.service';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {PostClass} from '../common/post.class';
+import {PostsService} from '../../posts.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {PostModel} from '../post.model';
 import {faEdit, faPlus} from '@fortawesome/free-solid-svg-icons';
 import {ModalDirective} from 'angular-bootstrap-md';
 
@@ -15,7 +15,7 @@ export class CreatePostDialogComponent implements OnInit {
 
   @ViewChild(ModalDirective) modal: ModalDirective;
 
-  @Input() post: PostClass;
+  @Input() post: PostModel;
   postForm: FormGroup;
   faEdit = faEdit;
   faPlus = faPlus;
@@ -23,12 +23,12 @@ export class CreatePostDialogComponent implements OnInit {
   constructor(private modalService: NgbModal, private postsService: PostsService) {
   }
 
-  get postAuthor(): AbstractControl {
-    return this.postForm.get('postAuthor');
+  get postAuthor(): FormControl {
+    return this.postForm.get('postAuthor') as FormControl;
   }
 
-  get postContent(): AbstractControl {
-    return this.postForm.get('postContent');
+  get postContent(): FormControl {
+    return this.postForm.get('postContent') as FormControl;
   }
 
   ngOnInit(): void {
@@ -53,15 +53,11 @@ export class CreatePostDialogComponent implements OnInit {
       this.post.content = val.postContent;
       this.postsService.updatePost(this.post);
     } else { // New post
-      const newPost = new PostClass(val.postAuthor, val.postContent);
+      const newPost = new PostModel(val.postAuthor, val.postContent);
       this.postsService.createPost(newPost);
       this.postForm.reset();
     }
     return true; // success
-  }
-
-  openModal(): void {
-    this.modal.show();
   }
 
 }
