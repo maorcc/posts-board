@@ -10,3 +10,12 @@ Enjoy.
 
 ### Screenshot
 ![screenshot](https://user-images.githubusercontent.com/255973/97094885-e7b57600-1661-11eb-94e2-1b207a4d6f93.png "Screenshot of the UI")
+
+
+# Setup
+To run this app localy, make sure you have Angular CLI installed.  Then just do:
+```
+git clone https://github.com/maorcc/posts-board.git
+npm install
+ng serve --open
+```
