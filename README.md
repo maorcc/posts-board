@@ -7,3 +7,6 @@ This is yet another example of a simple Angular web app.
 This sample app uses the broweser's local-storage for persisting state, therefore it requirs no backend.
 
 Enjoy.
+
+### Screenshot
+![screenshot](https://user-images.githubusercontent.com/255973/97094885-e7b57600-1661-11eb-94e2-1b207a4d6f93.png "Screenshot of the UI")
